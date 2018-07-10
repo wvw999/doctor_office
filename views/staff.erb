@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <p>&nbsp;</p>
+    <h3>Hello, weary admin.</h3>
+    <p>&nbsp;</p>
+    <h4>Add a doctor</h4>
+    <p>&nbsp;</p>
+    <form action="/add_doctor" method="post">
+      <div class="form-inline">
+        <label for="doctor_name">Doctor's name</label>
+        <input id="doctor_name" name="doctor_name" class="form-control" type="text">
+        <p>&nbsp;</p>
+        <label for="specialty">Doctor's specialty</label>
+        <input id="specialty" name="specialty" class="form-control" type="text">
+      </div>
+      <p>&nbsp;</p>
+      <button type="submit" class="btn btn-info">submit</button>
+      <p>&nbsp;</p>
+    </form>
+    <p>&nbsp;</p>
+    <h4>Add a patient</h4>
+    <p>&nbsp;</p>
+    <form action="/add_patient" method="post">
+      <div class="form-inline">
+        <label for="patient_name">Patient's name</label>
+        <input id="patient_name" name="patient_name" class="form-control" type="text">
+        <p>&nbsp;</p>
+        <label for="dob">Patient's birthdate yyyy-mm-dd</label>
+        <input id="dob" name="dob" class="form-control" type="text">
+        <p>&nbsp;</p>
+        <label for="doc_id">Primary care doctor</label>
+        <select id="doc_list" name="doc_drop">
+          <% @doc_list.each do |doctors| %>
+          <option value = "<%= doctors["id"] %>" > <%= doctors["name"] %> </option>
+          <% end %>
+        </select>
+      </div>
+      <p>&nbsp;</p>
+      <button type="submit" class="btn btn-info">submit</button>
+      <p>&nbsp;</p>
+    </form>
+  </div>
+  <div class="row">
+  </div>
+</div>
