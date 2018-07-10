@@ -1,0 +1,96 @@
+-- ---
+-- Globals
+-- ---
+
+-- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+-- SET FOREIGN_KEY_CHECKS=0;
+
+-- ---
+-- Table 'staff'
+--
+-- ---
+
+DROP TABLE IF EXISTS staff;
+
+CREATE TABLE staff (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR NULL DEFAULT NULL,
+  specialty VARCHAR NULL DEFAULT NULL,
+  is_doctor BOOLEAN NULL DEFAULT NULL
+);
+
+-- ---
+-- Table 'patients'
+--
+-- ---
+
+DROP TABLE IF EXISTS patients;
+
+CREATE TABLE patients (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR NULL DEFAULT NULL,
+  birthdate TIMESTAMP NULL DEFAULT NULL,
+  doctor_id INTEGER NULL DEFAULT NULL
+);
+
+-- ---
+-- Table 'visits'
+--
+-- ---
+
+DROP TABLE IF EXISTS visits;
+
+CREATE TABLE visits (
+  id SERIAL PRIMARY KEY,
+  date INTEGER NULL DEFAULT NULL,
+  doctor_id INTEGER NULL DEFAULT NULL,
+  patient_id INTEGER NULL DEFAULT NULL
+);
+
+-- ---
+-- Table 'medical_record'
+--
+-- ---
+
+DROP TABLE IF EXISTS medical_record;
+
+CREATE TABLE medical_record (
+  id SERIAL PRIMARY KEY,
+  record_info VARCHAR NULL DEFAULT NULL,
+  doctor_id INTEGER NULL DEFAULT NULL,
+  patient_id INTEGER NULL DEFAULT NULL,
+  visit_id VARCHAR NULL DEFAULT NULL
+);
+
+-- ---
+-- Foreign Keys
+-- ---
+
+ALTER TABLE patients ADD FOREIGN KEY (doctor_id) REFERENCES staff (id);
+ALTER TABLE visits ADD FOREIGN KEY (doctor_id) REFERENCES staff (id);
+ALTER TABLE visits ADD FOREIGN KEY (patient_id) REFERENCES patients (id);
+ALTER TABLE medical_record ADD FOREIGN KEY (doctor_id) REFERENCES staff (id);
+ALTER TABLE medical_record ADD FOREIGN KEY (patient_id) REFERENCES patients (id);
+ALTER TABLE medical_record ADD FOREIGN KEY (visit_id) REFERENCES visits (id);
+
+-- ---
+-- Table Properties
+-- ---
+
+-- ALTER TABLE staff ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE patients ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE visits ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE medical_record ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ---
+-- Test Data
+-- ---
+
+-- INSERT INTO staff (id,name,specialty,is_doctor) VALUES
+-- ('','','','');
+-- INSERT INTO patients (id,name,birthdate,doctor_id) VALUES
+-- ('','','','');
+-- INSERT INTO visits (id,date,doctor_id,patient_id) VALUES
+-- ('','','','');
+-- INSERT INTO medical_record (id,record_info,doctor_id,patient_id,visit_id) VALUES
+-- ('','','','','');
