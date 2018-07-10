@@ -3,9 +3,7 @@ class List
   def list
     doctor_count = grab_patients()
     doctor_results = grab_doctors(doctor_count)
-    doctor_list = DB.exec("SELECT * FROM staff;")
-    # binding.pry
-    doctor_list
+    doctor_results
   end
 
   def grab_patients
@@ -21,9 +19,8 @@ class List
     results_hash = {}
     docs_uniq = docs.clone.uniq
     docs_uniq.each do |count_patients|
-      find_name = DB.exec("SELECT name FROM staff WHERE id = 4;")
-      results_hash[find_name['name']] = docs.count(count_patients)
-      binding.pry
+      find_name = DB.exec("SELECT name FROM staff WHERE id = #{count_patients};")
+      results_hash[find_name.first["name"]] = docs.count(count_patients)
     end
     results_hash
   end

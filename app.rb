@@ -4,6 +4,7 @@ also_reload("lib/**/*.rb")
 require("./lib/list")
 require("./lib/staff")
 require("./lib/patient")
+require("./lib/specialty")
 require("pry")
 require("pg")
 
@@ -48,4 +49,10 @@ post ('/add_patient') do
   sickypants = Patient.new({:patient_name => @patient_name, :dob => @dob, :doc_id => @doc_id})
   sickypants.add_patient()
   redirect to('/')
+end
+
+get ('/patient') do
+  special_list = Specialty.new
+  @special_page = special_list.grab_specialties()
+  erb(:patient)
 end

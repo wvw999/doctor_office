@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <p> </p>
+    <h4>A page for you, the Underinsured</h4>
+    <p>&nbsp;</p>
+    <form action="/list" method="get">
+      <p>Let's see all the doctors and what they do:</p>
+      <p>&nbsp;</p>
+      <% @special_page.each do |doc_spec| %>
+      <p> &nbsp;<%= doc_spec[0] %> , <%= doc_spec[1] %></p>
+      <p>&nbsp;</p>
+      <% end %>
+      <p> </p>
+    </form>
+    <form class="form-inline" method="get" action="/">
+      <button type="submit" class="btn btn-danger" name="clear_btn" value="clear">back to main</button>
+    </form>
+  </div>
+  <div class="row">
+  </div>
+</div>

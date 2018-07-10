@@ -10,7 +10,6 @@ class Staff
   end
 
   def add_staff
-
     DB.exec("INSERT INTO staff (name, specialty, is_doctor) VALUES ('#{@doctor_name}', '#{@specialty}', true);")
   end
 
